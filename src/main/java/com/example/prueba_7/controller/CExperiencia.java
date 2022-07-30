@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.example.prueba_7.controller;
 
 /**
@@ -62,28 +59,12 @@ public class CExperiencia {
         return new ResponseEntity<>(nuevaExperiencia, HttpStatus.CREATED);
     }
     
-    /**@PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody dtoExperiencia dtoexp){      
-        if(StringUtils.isBlank(dtoexp.getNombreE()))
-            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if(sExperiencia.existsByNombreE(dtoexp.getNombreE()))
-            return new ResponseEntity(new Mensaje("Esa experiencia existe"), HttpStatus.BAD_REQUEST);
-        
-        Experiencia experiencia = new Experiencia(dtoexp.getNombreE(), dtoexp.getDescripcionE());
-        sExperiencia.save(experiencia);
-        
-        return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
-    }**/
-    
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoExperiencia dtoexp){
-        //Validamos si existe el ID
         if(!sExperiencia.existsById(id))
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
-        //Compara nombre de experiencias
         if(sExperiencia.existsByNombreE(dtoexp.getNombreE()) && sExperiencia.getByNombreE(dtoexp.getNombreE()).get().getId() != id)
             return new ResponseEntity(new Mensaje("Esa experiencia ya existe"), HttpStatus.BAD_REQUEST);
-        //No puede estar vacio
         if(StringUtils.isBlank(dtoexp.getNombreE()))
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         
@@ -91,7 +72,6 @@ public class CExperiencia {
         experiencia.setNombreE(dtoexp.getNombreE());
         experiencia.setDescripcionE((dtoexp.getDescripcionE()));
         
-        //sExperiencia.save(experiencia); ?????? //Ver void save de SExperiencia
         sExperiencia.agregarExperiencia(experiencia);
         return new ResponseEntity(new Mensaje("Experiencia actualizada"), HttpStatus.OK);
              

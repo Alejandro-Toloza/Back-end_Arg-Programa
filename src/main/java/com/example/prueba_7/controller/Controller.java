@@ -1,5 +1,4 @@
 package com.example.prueba_7.controller;
-
 import com.example.prueba_7.model.Persona;
 import com.example.prueba_7.service.IPersonaService;
 import java.util.List;
@@ -30,7 +29,6 @@ public class Controller {
         persoServ.crearPersona(per);
     }
     
-    
     @GetMapping("/ver/personas")
     @ResponseBody
     public List<Persona> verPersonas(){
@@ -45,10 +43,7 @@ public class Controller {
     @PutMapping("/personas/editar/{id}")
     public Persona editarPersona(@PathVariable Long id, @RequestParam ("nombre") String nuevonombre, @RequestParam ("apellido") String nuevoapellido){
         
-        //Busco Persona en cuestion
         Persona perso = persoServ.buscarPersona(id);
-        //Esto puede ir en el service para desacoplar
-        //mejor aún el codigo en un nuevo metodo.
         perso.setNombre(nuevonombre);
         perso.setApellido(nuevoapellido);
         persoServ.crearPersona(perso);

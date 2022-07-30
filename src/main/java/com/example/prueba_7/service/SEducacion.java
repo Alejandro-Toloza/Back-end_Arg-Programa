@@ -28,7 +28,6 @@ public class SEducacion {
         return rEducacion.save(edu);
     }
 
-
      public List<Educacion> list(){
          return rEducacion.findAll();
      }
@@ -36,12 +35,6 @@ public class SEducacion {
      public Optional<Educacion> getOne(int id){
          return rEducacion.findById(id);
      }
-     /*
-     public Optional<Educacion> getByTitulo(String nombre_edu){
-         return rEducacion.findByTitulo(nombre_edu);
-     }
-     */
-
      
      public void delete(int id){
          rEducacion.deleteById(id);
@@ -50,9 +43,5 @@ public class SEducacion {
      public boolean existsById(int id){
          return rEducacion.existsById(id);
      }
-     /*
-     public boolean existsByTitulo(String nombre_edu){
-         return rEducacion.existsByTitulo(nombre_edu);
-     }
-    */
+
 }

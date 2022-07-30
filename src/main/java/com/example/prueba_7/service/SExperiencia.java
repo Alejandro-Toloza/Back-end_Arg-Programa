@@ -40,12 +40,6 @@ public class SExperiencia {
          return rExperiencia.findByNombreE(nombreE);
      }
      
-     /**AgregarExp ?
-     public void save(Experiencia expe){
-         rExperiencia.save(expe);
-     }
-      **/
-     
      public void delete(int id){
          rExperiencia.deleteById(id);
      }

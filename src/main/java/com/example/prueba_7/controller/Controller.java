@@ -3,7 +3,6 @@ import com.example.prueba_7.model.Persona;
 import com.example.prueba_7.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +22,7 @@ public class Controller {
     @Autowired
     private IPersonaService persoServ;
     
-    @PreAuthorize("hasRole('ADMIN')")
+   
     @PostMapping("/new/persona")
     public void agregarPersona(@RequestBody Persona per){
         persoServ.crearPersona(per);
@@ -34,12 +33,12 @@ public class Controller {
     public List<Persona> verPersonas(){
         return persoServ.verPersonas();
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @DeleteMapping("/delete/{id}")
     public void borrarPersona(@PathVariable Long id){
         persoServ.borrarPersona(id);
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PutMapping("/personas/editar/{id}")
     public Persona editarPersona(@PathVariable Long id, @RequestParam ("nombre") String nuevonombre, @RequestParam ("apellido") String nuevoapellido){
         
